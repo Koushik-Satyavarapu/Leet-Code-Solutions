@@ -1,15 +1,16 @@
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        unordered_map<int,int> freq;
-        for(int i:nums){
-            freq[i]++;
-        }
-        for(auto i:freq){
-            if(i.second==1){
-                return i.first;
+        unordered_set<int> unique;
+        int sum=0;
+        int usum=0;
+        for(int n:nums){
+            if(unique.find(n)==unique.end()){
+                usum+=n;
+                unique.insert(n);
             }
+            sum+=n;
         }
-        return -1;
+        return 2*usum - sum;
     }
 };
