@@ -1,12 +1,13 @@
 class Solution {
 public:
     int firstUniqChar(string s) {
-        map<char,int> mp;
+        // map<char,int> mp;
+        int mp[26]={0};
         for(char ch:s){
-            mp[ch]++;
+            mp[ch-'a']++;
         }
         for(int i=0;i<s.size();i++){
-            if(mp[s[i]]==1){
+            if(mp[s[i]-'a']==1){
                 return i;
             }
         }
