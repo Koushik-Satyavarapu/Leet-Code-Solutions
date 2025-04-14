@@ -1,9 +1,6 @@
 class Solution {
 public:
     int countGoodTriplets(vector<int>& arr, int a, int b, int c) {
-        if(arr.size()<3){
-            return -1;
-        }
         int n=arr.size();
         int count=0;
         for(int i=0;i<n-2;i++){
