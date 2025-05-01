@@ -1,14 +1,14 @@
 class Solution {
 public:
     double findMaxAverage(vector<int>& nums, int k) {
-        double sum=0;
+        double add=0;
         for(int i=0;i<k;i++){
-            sum+=nums[i];
+            add+=nums[i];
         }
-        double maxi=sum;
+        double maxi=add;
         for(int i=k;i<nums.size();i++){
-            sum+=nums[i]-nums[i-k];
-            maxi=max(maxi,sum);
+            add+=nums[i]-nums[i-k];
+            maxi=max(maxi,add);
         }
         double average=maxi/k;
         return average;
