@@ -3,7 +3,6 @@ public:
     int minDominoRotations(vector<int>& tops, vector<int>& bottoms) {
         unordered_map<int,int> mp1;
         unordered_map<int,int> mp2;
-        int same=0;
         for(int i=0;i<tops.size();i++){
             mp1[tops[i]]++;
             mp2[bottoms[i]]++;
@@ -11,8 +10,8 @@ public:
         int x=-1;
         
         for(int i=1;i<=6;i++){
-            
-            if(mp1[i]+mp2[i]-same>=tops.size()){
+
+            if(mp1[i]+mp2[i]>=tops.size()){
                 x=i;
             }
         }
