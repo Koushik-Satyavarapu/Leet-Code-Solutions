@@ -5,14 +5,10 @@ public:
         for(int i:arr){
             mpp[i]++;
         }
-        vector<int> res;
+        unordered_set<int> freq;
         for(auto &a:mpp){
-            if(find(res.begin(),res.end(),a.second)==res.end()){
-                res.push_back(a.second);
-            }else{
-                return false;
-            }
+            freq.insert(a.second);
         }
-        return true;
+        return freq.size()==mpp.size();
     }
 };
