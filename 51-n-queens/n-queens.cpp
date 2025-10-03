@@ -1,46 +1,35 @@
 class Solution {
 public:
-    bool isSafe(int row,int col,int n,vector<string> store){
-        int i=col;
-        while(i>=0){
-            if(store[row][i]=='Q') return false;
-            i--;
-        }
-        int j=row,k=col;
-        while(j>=0 && k>=0){
-            if(store[j][k]=='Q') return false;
-            j--;
-            k--;
-        }
-        i=row,k=col;
-        while(k>=0 && i<n){
-            if(store[i][k]=='Q') return false;
-            i++;
-            k--;
-        }
-        return true;
-    }
-    void check(vector<vector<string>> &res,int n,int col,vector<string> store){
+    void printPerm(int n,int col,vector<vector<string>> &res,vector<string> &store,vector<int> &row,vector<int> &crossA,vector<int> &crossB){
         if(col==n){
             res.push_back(store);
             return;
         }
         for(int i=0;i<n;i++){
-            if(isSafe(i,col,n,store)){
+            if(!row[i] && !crossA[i+col] && !crossB[col+(n-i-1)]){
+                row[i]=1;
+                crossA[i+col]=1;
+                crossB[col+(n-i-1)]=1;
                 store[i][col]='Q';
-                check(res,n,col+1,store);
+                printPerm(n,col+1,res,store,row,crossA,crossB);
                 store[i][col]='.';
+                row[i]=0;
+                crossA[i+col]=0;
+                crossB[col+(n-i-1)]=0;
             }
         }
     }
     vector<vector<string>> solveNQueens(int n) {
+        string st(n,'.');
         vector<vector<string>> res;
         vector<string> store(n);
-        string st(n,'.');
         for(int i=0;i<n;i++){
             store[i]=st;
         }
-        check(res,n,0,store);
+        vector<int> row(n,0);
+        vector<int> crossA((2*n)-1,0);
+        vector<int> crossB((2*n)-1,0);
+        printPerm(n,0,res,store,row,crossA,crossB);
         return res;
     }
 };
