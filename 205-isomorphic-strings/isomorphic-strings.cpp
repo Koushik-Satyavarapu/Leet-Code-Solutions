@@ -1,18 +1,14 @@
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
-        unordered_map<char,char> rep;
-        unordered_map<char,bool> ch;
-        for(int i=0;i<t.size();i++){
-            if(rep.find(s[i])!=rep.end()){
-                if(rep[s[i]]!=t[i]){
-                    return false;
-                }
-            }else if(ch.find(t[i])!=ch.end()){
+        vector<int> sind(256,0);
+        vector<int> tind(256,0);
+        for(int i=0;i<s.size();i++){
+            if(sind[s[i]]!=tind[t[i]]){
                 return false;
             }
-            rep[s[i]]=t[i];
-            ch[t[i]]=true;
+            sind[s[i]]=i+1;
+            tind[t[i]]=i+1;
         }
         return true;
     }
