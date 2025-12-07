@@ -7,7 +7,7 @@ public:
         }
         for(int i=0;i<nums.size();i++){
             if(!used[i]){
-                if(i>0 && nums[i]==nums[i-1] && used[i-1]==true){
+                if(i>0 && nums[i]==nums[i-1] && used[i-1]==false){
                     continue;
                 }
                 used[i]=true;
